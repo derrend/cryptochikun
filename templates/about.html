@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Welcome to cryptochikun 2.0!</h3>
+        <p>Worlds first battle betting crypto game based on pure risk aversion.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <hr>
+        <h3>How does it work?</h3>
+        <p>Inputs with > minimum required confirmations and an amount >= ((dust_threshold / 2) * 100) + network_transaction_fee are matched at random each time a new block is discovered.<br>
+        The value of both inputs are sent to the return address of whichever input has the highest value.<br>
+        Matching addresses/amounts are discarded and redrawn.<br>
+        Deposit addresses can be reused.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <hr>
+        <h3>Network: Dust Threshold, Network Transaction Fee, Minimum Confirmations, Block Time, Minimum Deposit</h3>
+        <p>BTC: &nbsp;&nbsp; {{ gvars.btc_dust_threshold }}, &nbsp;&nbsp; {{ gvars.btc_tx_fee }}, &nbsp;&nbsp; {{ gvars.btc_min_conf|add:-1 }}, &nbsp;&nbsp; 10 Minutes, &nbsp;&nbsp; {{ gvars.btc_minimum_amount }}<br>
+        LTC: &nbsp;&nbsp; {{ gvars.ltc_dust_threshold }}, &nbsp;&nbsp; {{ gvars.ltc_tx_fee }}, &nbsp;&nbsp; {{ gvars.ltc_min_conf|add:-1 }}, &nbsp;&nbsp; 2.5 Minutes, &nbsp;&nbsp; {{ gvars.ltc_minimum_amount }}<br>
+        VIA: &nbsp;&nbsp; {{ gvars.via_dust_threshold }}, &nbsp;&nbsp; {{ gvars.via_tx_fee }}, &nbsp;&nbsp; {{ gvars.via_min_conf|add:-1 }}, &nbsp;&nbsp; 24 Seconds, &nbsp;&nbsp; {{ gvars.via_minimum_amount }}</p>
+    </div>
+</div>
+
+<!--<div class="row">-->
+    <!--<div class="col-xs-12">-->
+        <!--<hr>-->
+        <!--<h3>Required Confirmations</h3>-->
+        <!--<p>BTC: {{ gvars.btc_min_conf|add:-1 }}<br>-->
+        <!--LTC: {{ gvars.ltc_min_conf|add:-1 }}<br>-->
+        <!--VIA: {{ gvars.via_min_conf|add:-1 }}</p>-->
+    <!--</div>-->
+<!--</div>-->
+
+<div class="row">
+    <div class="col-xs-12">
+        <hr>
+        <h3>Comission</h3>
+        <p>Vig is {{ vig }}% of the losing input.<br>
+        Inputs below the minimum will not be processed with no guarantee of return.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <hr>
+        <h3>Contact</h3>
+        <p>Any problems or question you can email support at our sister site <a href="https://cryptoproof.info/" target="_blank">cryptoproof.info</a>.<br>
+        <img src="{% static 'email.png' %}"/></p>
+    </div>
+</div>
+{% endblock %}

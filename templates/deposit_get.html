@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<center>
+{% if count %}
+<div class="row">
+    <div class="col-xs-12">
+        <img src="{% static 'eggs_in_basket.png' %}" height="40"/>= {{ count }}
+    </div>
+</div>
+{% endif %}
+
+<div class="row">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-10">
+    {% with 'doodle_'|add:client_id|add:'.png' as doodle_static %}
+        <img src="{% static doodle_static %}" alt="doodle" class="img-responsive"/>
+    {% endwith %}
+    </div>
+    <div class="col-xs-1"></div>
+</div>
+
+{% if error_message %}
+<div class="row">
+    <div class="col-xs-12">
+        <p><font color="red"><b>{{ error_message }}</b></font></p>
+    </div>
+</div>
+{% endif %}
+
+<div class="row">
+    <div class="col-xs-12">
+        <form method='POST' action=''> {% csrf_token %}
+            {{ form_capcha }}
+            <br />
+            {{ form_address }}
+            <br />
+            <button type="submit" class="btn btn-success btn-sm">Submit</button>
+        </form>
+    </div>
+</div>
+</center>
+{% endblock %}

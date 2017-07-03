@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load qr_tags %}
+{% block content %}
+<center>
+<div class="row">
+    <div class="col-xs-12">
+        <p><font color="red"><b>Minimum amount: {{ minimum_amount }} {{ client_id }}</b></font> <br>
+        (if you bet the minimum, you will lose)</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <a href="{{ client }}:{{ deposit_address }}" title="deposit_address">{% qr_from_text deposit_address %}</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <p>{{ deposit_address }}</p>
+    </div>
+</div>
+</center>
+{% endblock %}

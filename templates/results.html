@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load render_table from django_tables2 %}
+{% block content %}
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"]});
+</script>
+<center>
+<div class="row">
+    <div class="col-xs-11">
+        {{ chart.as_html }}
+    </div>
+    <div class="col-xs-1">
+        <p>{% render_table amount_table %}</p>
+        <p>{% render_table gains_table %}</p>
+        <p>{% render_table spread_table %}</p>
+        <p>{% render_table narrow_table %}</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        {% if error_message %}
+            <p><font color="red"><b>{{ error_message }}</b></font></p>
+        {% endif %}
+        <form action="" method="post"> {% csrf_token %}
+            {{ form }}
+            <input type="submit" class="btn btn-primary btn-xs" value="Search" />
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        {% render_table result_table %}
+    </div>
+</div>
+</center>
+{% endblock %}
